@@ -78,11 +78,23 @@ var total = 0;
 function buy(id) {
     // 1. Loop for to the array products to get the item to add to cart
     // 2. Add found product to the cart array
+
+    let i = id - 1; // Indicates 'less one' to avoid 0 at the index
+
+    if (cart.includes(products[i])) { 
+        products[i].amount += 1; // If the cart already have a product of this kind, add plus one.
+
+    } else {
+
+        products[i].amount = 1;
+        cart.push(products[i]); // Add the desired product to the cart by the id button.
+    }
+
+    console.log(cart)
 }
 
 // Exercise 2
 function cleanCart() {
-
 }
 
 // Exercise 3
