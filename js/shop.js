@@ -100,6 +100,13 @@ function buy(id) {
 // Exercise 2
 
 function cleanCart() {
+
+    let emptyCart = confirm('Are you sure?');
+        cart.splice(0, cart.length); // Delete all the items inside the shoping cart after confirmation.
+    
+    // cart = [];
+    console.log(emptyCart);
+    console.log(cart);
 }
 
 // Exercise 3
