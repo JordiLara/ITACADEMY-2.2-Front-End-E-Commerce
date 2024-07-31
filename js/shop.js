@@ -95,7 +95,7 @@ function buy(id) {
     }
 
     console.log(cart);
-
+    calculateTotal(); // Once an item its added at the cart, calls this function to get the total price.
 }
 
 // Exercise 2
@@ -133,7 +133,7 @@ function calculateTotal() {
         totalPrice += (cart[i].amount * cart[i].price);
     }
     console.log('total Price', totalPrice);*/
-    
+
 }
 
 // Exercise 4
