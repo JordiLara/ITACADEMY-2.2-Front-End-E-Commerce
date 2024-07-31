@@ -118,7 +118,22 @@ function cleanCart() {
 function calculateTotal() {
 
     // Calculate total price of the cart using the "cartList" array
- 
+
+    let totalPrice = 0;
+
+    cart.forEach(products => {
+        totalPrice += products.price * products.amount;
+    });
+
+    console.log('total Price', totalPrice);
+
+    /*let totalPrice = 0
+
+    for (let i = 0; i < cart.length; i++) {
+        totalPrice += (cart[i].amount * cart[i].price);
+    }
+    console.log('total Price', totalPrice);*/
+    
 }
 
 // Exercise 4
