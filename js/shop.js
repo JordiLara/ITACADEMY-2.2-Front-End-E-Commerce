@@ -94,7 +94,8 @@ function buy(id) {
         cart.push(products[i]); // Add the desired product to the cart by the id button.
     }
 
-    console.log(cart)
+    console.log(cart);
+
 }
 
 // Exercise 2
@@ -105,10 +106,10 @@ function cleanCart() {
 
     if (emptyCart) {
         cart.splice(0, cart.length); // Delete all items inside the shop cart if confirmed
-      }
+    }
     
     // cart = [];
-    console.log(emptyCart);
+
     console.log(cart);
 }
 
@@ -117,6 +118,7 @@ function cleanCart() {
 function calculateTotal() {
 
     // Calculate total price of the cart using the "cartList" array
+ 
 }
 
 // Exercise 4
