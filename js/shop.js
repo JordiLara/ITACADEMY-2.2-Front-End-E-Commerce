@@ -96,6 +96,7 @@ function buy(id) {
 
     console.log(cart);
     calculateTotal(); // Once an item its added at the cart, calls this function to get the total price.
+    applyPromotionsCart();
 }
 
 // Exercise 2
@@ -133,13 +134,32 @@ function calculateTotal() {
         totalPrice += (cart[i].amount * cart[i].price);
     }
     console.log('total Price', totalPrice);*/
-
 }
 
 // Exercise 4
+
 function applyPromotionsCart() {
 
     // Apply promotions to each item in the array "cart"
+
+    let promoDiscounts = 0;
+    var indexPromoProducts = [];
+
+    indexPromoProducts = cart.reduce((accumulator, products, index) => {
+        if (products.offer) {
+            accumulator.push(index);
+        }
+        return accumulator;
+    }, []);
+
+    for (let i = 0; i < indexPromoProducts.length; i++) {
+        if (cart[indexPromoProducts[i]].amount >= cart[indexPromoProducts[i]].offer.number) {
+            promoDiscounts += cart[indexPromoProducts[i]].price * cart[indexPromoProducts[i]].amount * (cart[indexPromoProducts[i]].offer.percent / 100);
+        }
+    }
+
+    console.log('discount', promoDiscounts.toFixed(2));
+    return promoDiscounts;  
 }
 
 // Exercise 5
