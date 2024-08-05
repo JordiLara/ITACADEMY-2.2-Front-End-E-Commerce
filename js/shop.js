@@ -125,8 +125,8 @@ function calculateTotal() {
     cart.forEach(products => {
         totalPrice += products.price * products.amount;
     });
-
     console.log('total Price', totalPrice);
+    return totalPrice;
 
     /*let totalPrice = 0
 
@@ -163,9 +163,53 @@ function applyPromotionsCart() {
 }
 
 // Exercise 5
+
 function printCart() {
 
     // Fill the shopping cart modal manipulating the shopping cart dom
+
+    var table = document.getElementById('ShoppingCartTable');
+    var tbody = table.getElementsByTagName('tbody')[0];
+
+    tbody.innerHTML = ''; 
+
+    for (let item of cart) { // When added a new item at the cart, new cell and row will be created and insert the desired parameters for each one.
+
+        var row = tbody.insertRow();
+        var cellName = row.insertCell();
+        var insertPrice = row.insertCell(1);
+        var insertAmount = row.insertCell(2);
+        var insertTotal = row.insertCell(3);
+        
+        // Get the different types of data requested
+
+        cellName.textContent = item.name; 
+        insertPrice.textContent = item.price;
+        insertAmount.textContent = item.amount;
+        insertTotal.textContent = item.amount * item.price;
+        
+    }
+
+    // calculate the total price of the items purchased.
+
+    var total = calculateTotal();
+    var totalPrice = document.getElementById('total_price');
+    totalPrice.textContent = total;
+    console.log(total);
+
+    // applies the total amount of discounts.
+
+    var discount = applyPromotionsCart();
+    var totalDiscount = document.getElementById('total_discount');
+    totalDiscount.textContent = discount.toFixed(2);
+    console.log(discount);
+
+    // gives the final price once the discount its applied.
+
+    var finalPrice = document.getElementById('final_price');
+    finalPrice.textContent = total - discount;
+    console.log(finalPrice);
+    
 }
 
 

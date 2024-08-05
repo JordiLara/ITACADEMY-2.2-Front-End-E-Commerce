@@ -245,16 +245,21 @@
 				</div>
 				<div class="modal-body">
 					<h3 class="text-center bill px-5">Shopping Cart</h3>
-					<table class="table">
+					<table class="table" id="ShoppingCartTable">
 						<thead>
 							<tr>
 								<th scope="col">Product</th>
 								<th scope="col">Price</th>
 								<th scope="col">Qty.</th>
-								<th scope="col">Total <small>(with discount)</small></th>
+								<th scope="col">Total</th>
+								
 							</tr>
 						</thead>
-
+						<tbody>
+							<!-- Las nuevas filas de las tablas se añadirán aquí -->
+						</tbody>
+					</table>
+					<table>
 						<div class="text-center fs-5">
 							Total: $<span id="total_price"></span>
 						</div>
