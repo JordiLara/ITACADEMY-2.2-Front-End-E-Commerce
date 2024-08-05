@@ -112,6 +112,7 @@ function cleanCart() {
     // cart = [];
 
     console.log(cart);
+    printCart();
 }
 
 // Exercise 3
@@ -184,9 +185,9 @@ function printCart() {
         // Get the different types of data requested
 
         cellName.textContent = item.name; 
-        insertPrice.textContent = item.price;
+        insertPrice.textContent = item.price + '$';
         insertAmount.textContent = item.amount;
-        insertTotal.textContent = item.amount * item.price;
+        insertTotal.textContent = item.amount * item.price + '$';
         
     }
 
