@@ -57,6 +57,9 @@ function validate() {
     return valid;
 }
 
+
+// If this formulary were sending real data, this will prevent corrupted forms to be sent for real to the server by calling: if validate() it's not validated, don't submit the form.
+
 document.getElementById('form').addEventListener('submit', function(event) {
     if (!validate()) {
         event.preventDefault();
