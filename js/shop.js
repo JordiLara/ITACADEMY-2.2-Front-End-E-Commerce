@@ -181,6 +181,7 @@ function printCart() {
         var insertPrice = row.insertCell(1);
         var insertAmount = row.insertCell(2);
         var insertTotal = row.insertCell(3);
+        var modifyAmount = row.insertCell(4);
         
         // Get the different types of data requested
 
@@ -189,6 +190,34 @@ function printCart() {
         insertAmount.textContent = item.amount;
         insertTotal.textContent = item.amount * item.price + '$';
         
+        // Adds buttons to add items and delete items from cart
+
+        var addButton = document.createElement('button');
+
+        addButton.textContent = '+';
+        addButton.classList.add('button-add'); // add plus button to add items
+        addButton.addEventListener('click', function () { // call buy function to increment number of items
+        
+            buy(item.id);
+            printCart();
+        });
+
+        var minusButton = document.createElement('button');
+
+        minusButton.textContent = '-';
+        minusButton.classList.add('button-minus'); // add minus button to delete items
+        minusButton.addEventListener('click', function () { // call removeFromCart function to decrase number of items
+            
+            removeFromCart(item.id);
+            printCart();
+        });
+
+        // add buttons to modifyAmount cell/row
+
+        modifyAmount.appendChild(minusButton);
+        modifyAmount.appendChild(addButton);
+
+        insertTotal.textContent = item.amount * item.price;
     }
 
     // calculate the total price of the items purchased.
@@ -220,6 +249,21 @@ function printCart() {
 
 function removeFromCart(id) {
 
+    let i = id - 1;
+
+    if (cart.includes(products[i])) {
+
+        if (products[i].amount > 1) {
+            products[i].amount -= 1;
+
+        } else {
+            cart.splice(i, 1);
+        }
+    }
+
+    console.log(products[id]);
+    console.log(cart)
+    calculateTotal()
 }
 
 function open_modal() {
