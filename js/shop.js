@@ -63,14 +63,7 @@ var products = [
         price: 9.99,
         type: 'clothes'
     }
-]
-
-// => Reminder, it's extremely important that you debug your code. 
-// ** It will save you a lot of time and frustration!
-// ** You'll understand the code better than with console.log(), and you'll also find errors faster. 
-// ** Don't hesitate to seek help from your peers or your mentor if you still struggle with debugging.
-
-// Improved version of cartList. Cart is an array of products (objects), but each one has a quantity field to define its quantity, so these products are not repeated.
+];
 
 var cart = [];
 
@@ -80,22 +73,19 @@ var total = 0;
 
 function buy(id) {
 
-    // 1. Loop for to the array products to get the item to add to cart
-    // 2. Add found product to the cart array
-
-    let i = id - 1; // Indicates 'less one' to avoid 0 at the index
+    let i = id - 1; 
 
     if (cart.includes(products[i])) { 
-        products[i].amount += 1; // If the cart already have a product of this kind, add plus one.
+        products[i].amount += 1; 
 
     } else {
 
         products[i].amount = 1;
-        cart.push(products[i]); // Add the desired product to the cart by the id button.
+        cart.push(products[i]); 
     }
 
     console.log(cart);
-    calculateTotal(); // Once an item its added at the cart, calls this function to get the total price.
+    calculateTotal(); 
     applyPromotionsCart();
 }
 
@@ -106,7 +96,7 @@ function cleanCart() {
     let emptyCart = confirm('Are you sure?');
 
     if (emptyCart) {
-        cart.splice(0, cart.length); // Delete all items inside the shop cart if confirmed
+        cart.splice(0, cart.length); 
     }
     
     // cart = [];
@@ -118,8 +108,6 @@ function cleanCart() {
 // Exercise 3
 
 function calculateTotal() {
-
-    // Calculate total price of the cart using the "cartList" array
 
     let totalPrice = 0;
 
@@ -140,8 +128,6 @@ function calculateTotal() {
 // Exercise 4
 
 function applyPromotionsCart() {
-
-    // Apply promotions to each item in the array "cart"
 
     let promoDiscounts = 0;
     var indexPromoProducts = [];
@@ -167,14 +153,12 @@ function applyPromotionsCart() {
 
 function printCart() {
 
-    // Fill the shopping cart modal manipulating the shopping cart dom
-
     var table = document.getElementById('ShoppingCartTable');
     var tbody = table.getElementsByTagName('tbody')[0];
 
     tbody.innerHTML = ''; 
 
-    for (let item of cart) { // When added a new item at the cart, new cell and row will be created and insert the desired parameters for each one.
+    for (let item of cart) { 
 
         var row = tbody.insertRow();
         var cellName = row.insertCell();
@@ -182,21 +166,17 @@ function printCart() {
         var insertAmount = row.insertCell(2);
         var insertTotal = row.insertCell(3);
         var modifyAmount = row.insertCell(4);
-        
-        // Get the different types of data requested
 
         cellName.textContent = item.name; 
         insertPrice.textContent = item.price + '$';
         insertAmount.textContent = item.amount;
         insertTotal.textContent = item.amount * item.price + '$';
-        
-        // Adds buttons to add items and delete items from cart
 
         var addButton = document.createElement('button');
 
         addButton.textContent = '+';
-        addButton.classList.add('button-add'); // add plus button to add items
-        addButton.addEventListener('click', function () { // call buy function to increment number of items
+        addButton.classList.add('button-add'); 
+        addButton.addEventListener('click', function () { 
         
             buy(item.id);
             printCart();
@@ -205,14 +185,12 @@ function printCart() {
         var minusButton = document.createElement('button');
 
         minusButton.textContent = '-';
-        minusButton.classList.add('button-minus'); // add minus button to delete items
-        minusButton.addEventListener('click', function () { // call removeFromCart function to decrase number of items
+        minusButton.classList.add('button-minus'); 
+        minusButton.addEventListener('click', function () { 
             
             removeFromCart(item.id);
             printCart();
         });
-
-        // add buttons to modifyAmount cell/row
 
         modifyAmount.appendChild(minusButton);
         modifyAmount.appendChild(addButton);
@@ -220,21 +198,15 @@ function printCart() {
         insertTotal.textContent = item.amount * item.price;
     }
 
-    // calculate the total price of the items purchased.
-
     var total = calculateTotal();
     var totalPrice = document.getElementById('total_price');
     totalPrice.textContent = total;
     console.log(total);
 
-    // applies the total amount of discounts.
-
     var discount = applyPromotionsCart();
     var totalDiscount = document.getElementById('total_discount');
     totalDiscount.textContent = discount.toFixed(2);
     console.log(discount);
-
-    // gives the final price once the discount its applied.
 
     var finalPrice = document.getElementById('final_price');
     finalPrice.textContent = total - discount;
